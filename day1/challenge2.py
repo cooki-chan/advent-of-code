@@ -7,10 +7,7 @@ highest = [0, 0, 0]
 tempVal = 0
 for i in input:
     if i != "\n":
-        if "\n" in i: #litterly only exists for the sole purpouse of that one line at the end without a \n
-            tempVal += int(i[0:len(i) - 1])
-        else:
-            tempVal += int(i)
+        tempVal += int(i.replace("\n", ""))
 
     else: #end of a section
         for i in range(0, 2):
@@ -21,4 +18,3 @@ for i in input:
         tempVal = 0
 
 print(highest[0] + highest[1] + highest[2])
-
