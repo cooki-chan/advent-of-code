@@ -19,29 +19,38 @@ class monkey:
     def recieve(self, item):
         self.items.append(item)
     
-    def toss(self):
+    def toss(self): 
         for old in self.items:
-            tempWorry = eval(f"{old} {self.operation} / 3")
+            tempWorry = eval(f"({old} {self.operation})")
+            tempWorry //= 3
+            self.noInspected+=1
+            print(old)
             if tempWorry % self.test == 0:
                 monkies[self.true].recieve(tempWorry)
             else:
                 monkies[self.false].recieve(tempWorry)
-            self.items.remove(old)
-            self.noInspected+=1
+        self.items = []
+            
 
 for i in range(8):
     currentMonkey = i * 7
     monkies.append(monkey(input[currentMonkey+1], input[currentMonkey+2], input[currentMonkey+3], input[currentMonkey+4], input[currentMonkey+5]))
 
+for j in range(len(monkies)):
+    print(f"{j}: {monkies[j].items}")
+
 for i in range(20):
     for j in range(len(monkies)):
         monkies[j].toss()
-        print(j)
     print(f"{i}!!!")
+    for j in range(len(monkies)):
+        print(f"{j}: {monkies[j].items} with {monkies[j].noInspected}")
+    
 
 biggestVals = []
 for i in monkies:
     biggestVals.append(i.noInspected)
 
+print(biggestVals)
 biggestVals.sort(reverse=True)
 print(biggestVals[0] * biggestVals[1])
