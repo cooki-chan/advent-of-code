@@ -1,10 +1,16 @@
 input = ""
-with open('day11/inp1.txt') as i:
+with open('day9/inp1.txt') as i:
     input = i.readlines()
     for i in range(0, len(input)-1):
         input[i] = input[i].replace("\n", "")
 
 monkies = []
+
+def shortenNumber(num):
+    shortenFactor = 1
+    for i in monkies:
+        shortenFactor *= i.test
+    return num % shortenFactor
 
 class monkey:
     def __init__(self, startItems, operation, test:str, true, false):
@@ -20,8 +26,8 @@ class monkey:
         self.noInspected = 0
 
     def recieve(self, item):
-        self.items.append(item)
-    
+        self.items.append(shortenNumber(item))
+
     def toss(self): 
         for old in self.items:
             tempWorry = old
@@ -30,15 +36,13 @@ class monkey:
                 operationVal = self.opValue
             else:
                 operationVal = old
-            match self.operation:
-                case "+":
-                    tempWorry += operationVal
-                case "*":
-                    if type(operationVal) != type(self.opValue):
-                        print("slowwwwww")
-                        tempWorry = operationVal**2
-                    else:
-                        tempWorry = old * operationVal
+            if self.operation == "+":
+                tempWorry += operationVal
+            elif self.operation ==  "*":
+                if type(operationVal) != type(self.opValue):
+                    tempWorry = operationVal**2
+                else:
+                    tempWorry = old * operationVal
             self.noInspected+=1
             if tempWorry % self.test == 0:
                 monkies[self.true].recieve(tempWorry)
@@ -46,17 +50,14 @@ class monkey:
                 monkies[self.false].recieve(tempWorry)
         self.items = []
 
-for i in range(4):
+for i in range(8):
     currentMonkey = i * 7
     monkies.append(monkey(input[currentMonkey+1], input[currentMonkey+2], input[currentMonkey+3], input[currentMonkey+4], input[currentMonkey+5]))
 
 for i in range(10000):
     for j in range(len(monkies)):
         monkies[j].toss()
-        print("tossed")
-    #for j in range(len(monkies)):
-        #print(f"{j}: {monkies[j].items} with {monkies[j].noInspected}")
-    print(f"{i}!!!")
+    print(f"Round: {i}")
 
 biggestVals = []
 for i in monkies:
