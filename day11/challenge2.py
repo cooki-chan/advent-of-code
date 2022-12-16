@@ -1,5 +1,5 @@
 input = ""
-with open('day9/inp1.txt') as i:
+with open('day11/inp1.txt') as i:
     input = i.readlines()
     for i in range(0, len(input)-1):
         input[i] = input[i].replace("\n", "")
