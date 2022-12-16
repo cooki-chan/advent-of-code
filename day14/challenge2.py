@@ -4,7 +4,7 @@ with open('day14/inp1.txt') as i:
     for i in range(0, len(input)-1):
         input[i] = input[i].replace("\n", "")
 
-walls = []
+walls = {}
 lowestY = 0
 
 for i in input: #wall setup
@@ -22,7 +22,10 @@ for i in input: #wall setup
                 start = pos2[0]
 
             for i in range(abs(pos1[0]-pos2[0])+1):
-                walls.append((start+i, pos1[1]))
+                if start+i in walls.keys():
+                    walls[start+i].append(pos1[1])
+                else:
+                    walls[start+i] = [pos1[1]]
 
         elif not pos1[1] == pos2[1]: #y-coord changing
             start = pos1[1]
@@ -30,7 +33,10 @@ for i in input: #wall setup
                 start = pos2[1]
 
             for i in range(abs(pos1[1]-pos2[1])+1):
-                walls.append((pos1[0], start+i))
+                if pos1[0] in walls.keys():
+                    walls[pos1[0]].append(start+i)
+                else:
+                    walls[pos1[0]] = [start+i]
                 if start+i > lowestY:
                     lowestY = start+i
 
@@ -40,7 +46,7 @@ sand = []
 while stillFalling:
     yCoord = 0
     xCoord = 500
-    while not (500, yCoord) in walls:
+    while not yCoord in walls[500]:
         yCoord+=1
     yCoord-=1
 
@@ -48,19 +54,19 @@ while stillFalling:
         if yCoord+1 == lowestY+1:
             yCoord+1
             break
-        if not (xCoord, yCoord+1) in walls: #straight down
+        if not yCoord+1 in walls[xCoord]: #straight down
             yCoord+=1
-        elif not (xCoord-1, yCoord+1) in walls: #left check
+        elif not yCoord+1 in walls[xCoord-1]: #left check
             xCoord-=1
             yCoord+=1
-        elif not (xCoord+1, yCoord+1) in walls: #right check
+        elif not yCoord+1 in walls[xCoord+1]: #right check
             xCoord+=1
             yCoord+=1
         else:
             break
 
     if stillFalling:
-        walls.append((xCoord, yCoord))
+        walls[xCoord].append(yCoord)
         sand.append((xCoord, yCoord))
         noSand+=1
     if yCoord == 0:
