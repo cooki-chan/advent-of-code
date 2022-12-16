@@ -51,7 +51,12 @@ while stillFalling:
     yCoord-=1
 
     while True:
-        if yCoord+1 == lowestY+1:
+        if not xCoord+1 in walls.keys():
+            walls[xCoord+1] = []
+        if not xCoord-1 in walls.keys():
+            walls[xCoord-1] = []
+
+        if yCoord+1 == lowestY+2:
             yCoord+1
             break
         if not yCoord+1 in walls[xCoord]: #straight down
@@ -66,11 +71,14 @@ while stillFalling:
             break
 
     if stillFalling:
-        walls[xCoord].append(yCoord)
+        if xCoord in walls.keys():
+            walls[xCoord].append(yCoord)
+        else:
+            walls[xCoord] = [start+i]
         sand.append((xCoord, yCoord))
         noSand+=1
-    if yCoord == 0:
-        stillFalling == False
+    if yCoord <= 0:
+        stillFalling = False
     print((xCoord, yCoord))
 
 print(noSand)
