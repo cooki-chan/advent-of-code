@@ -1,7 +1,7 @@
 import os
 import datetime
 
-test = datetime.date.today().day
+test = 3
 
 os.mkdir(f"day{test}")
 open(f"day{test}/inp.txt", "w")
