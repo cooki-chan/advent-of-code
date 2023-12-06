@@ -1,5 +1,6 @@
 input = open('day5/inp2.txt').readlines()
 
+
 rawseeds = input[0].split("seeds: ")[1].split("  ")
 seeds = []
 
@@ -44,7 +45,7 @@ for i, content in enumerate(input):
                     newSeedEnd = str(int(currSection[k][0]) + int(currSection[k][0]) - int(k))
                     newSeeds.append((newSeedStart, newSeedEnd))
                 
-                if int(value[0]) > int(k) and int(value[1]) < int(k) + int(currSection[k][1]):
+                if int(value[0]) > int(k) and int(value[0]) < int(k) + int(currSection[k][1]) and int(value[1]) < int(k) + int(currSection[k][1]):
                     newSeedStart = str(int(value[0]) + int(currSection[k][0]) - int(k)) #range applies to end
                     newSeedEnd = str(int(value[1]) + int(currSection[k][0]) - int(k))
                     newSeeds.append((newSeedStart, newSeedEnd))
@@ -78,6 +79,6 @@ for i, content in enumerate(input):
 
 lowest  = int(seeds[0][0])
 for i in seeds:
-    if int(i[0]) < lowest:
+    if int(i[0]) < lowest and int(i[0]) > 0:
         lowest = int(i[0])
 print(lowest)

@@ -1,7 +1,8 @@
 import os
 import datetime
 
-test = 5
+test = 6
+
 
 os.mkdir(f"day{test}")
 open(f"day{test}/inp.txt", "w")
