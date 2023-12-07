@@ -1,7 +1,8 @@
 import os
 import datetime
 
-test = 6
+test = 7
+
 
 
 os.mkdir(f"day{test}")

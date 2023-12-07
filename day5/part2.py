@@ -27,28 +27,20 @@ for i, content in enumerate(input):
         for j, value in enumerate(seeds):
             outSeed = []
             for k in currSection.keys():
-                if int(k) < int(value[1]) and int(k) >= int(value[0]) and int(value[1]) > int(k) + int(currSection[k][1]): #check if left bound of seed range fits but right doesnt
-                    newSeedStart = str(int(value[0]) + int(currSection[k][0]) - int(k)) #range applies to beginning
-                    newSeedEnd = str(int(currSection[k][0]))
-                    outSeed.append((newSeedStart, newSeedEnd))
+                seedLeft = int(value[0])
+                seedRight = int(value[1])
 
-                    newSeedStart = str(k) #range doesnt apply to end
-                    newSeedEnd = str(int(value[1]))
-                    outSeed.append((newSeedStart, newSeedEnd))
+                rangeLeft = int(k)
+                rangeRight = int(k) + int(currSection[k][1])
 
-                if int(value[0]) < int(k) and int(value[1]) >= int(k) and int(value[1]) < int(k) + int(currSection[k][1]): #check if right bound fits but left doesnt
-                    newSeedStart = str(int(value[0])) #range doent apply to beginning
-                    newSeedEnd = str(int(k)-1)
-                    newSeeds.append((newSeedStart, newSeedEnd))
-
-                    newSeedStart = str(currSection[k][0]) #range applies to end
-                    newSeedEnd = str(int(currSection[k][0]) + int(currSection[k][0]) - int(k))
-                    newSeeds.append((newSeedStart, newSeedEnd))
-                
-                if int(value[0]) > int(k) and int(value[0]) < int(k) + int(currSection[k][1]) and int(value[1]) < int(k) + int(currSection[k][1]):
-                    newSeedStart = str(int(value[0]) + int(currSection[k][0]) - int(k)) #range applies to end
-                    newSeedEnd = str(int(value[1]) + int(currSection[k][0]) - int(k))
-                    newSeeds.append((newSeedStart, newSeedEnd))
+                #encounter 1: both sides of seeds fits within section range
+                if seedLeft >= rangeLeft and seedRight < rangeRight:
+                #encounter 2: left side outside, right side inside
+                if seedLeft < rangeLeft and seedRight < rangeRight:
+                #encounter 3: left side inside, right side outside
+                if seedLeft >= rangeLeft and seedRight > rangeRight:
+                #encounter 4: both sides of seeds outside, but section range fits within seeds 
+                if seedLeft < rangeLeft and seedRight > rangeRight:
 
             if outSeed == []:
                 newSeeds.append(value)
