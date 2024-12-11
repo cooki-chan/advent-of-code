@@ -1,6 +1,6 @@
 import os
 
-test = 9
+test = 11
 pre = "C:/Users/ethan/Desktop/GADIG/advent-of-code-2024/"
 
 os.mkdir(f"{pre}day{test}")

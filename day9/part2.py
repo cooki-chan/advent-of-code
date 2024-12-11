@@ -12,8 +12,8 @@ for i in input:
         index+=1
     free = not free
 
-    if int(i) == 0:
-        continue
+    # if int(i) == 0:
+    #     continue
 
     if int(i) > 0:
         disk.append((added, int(i)))
@@ -43,13 +43,13 @@ for i in range(index-1, -1, -1):
                 disk[i] = valOf
                 break
 
-    index = 0
-    while not index == len(disk)-1:
-        if disk[index][0] == -1 and disk[index+1][0] == -1:
-            disk[index] = (-1, disk[index][1] + disk[index+1][1])
-            disk.pop(index+1)
-            index-=2
-        index+=1
+    # index = 0
+    # while not index == len(disk)-1:
+    #     if disk[index][0] == -1 and disk[index+1][0] == -1:
+    #         disk[index] = (-1, disk[index][1] + disk[index+1][1])
+    #         disk.pop(index+1)
+    #         index-=2
+    #     index+=1
         
 
     # print(disk)
