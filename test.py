@@ -1,8 +1,9 @@
-print("AAA".count("AAA"))
+def solve(nums):
+    out = []
+    count = 0
+    for i in out:
+        count+=i
+    out.append(count)
+    return out
 
-As = 0
-rep3 = "AAA"
-for ind in range(len(rep3)-1):
-    if rep3[ind] == "A" and rep3[ind+1] == "A":
-        As+=1
-print(As)
+print(solve([1,2,3,4]))

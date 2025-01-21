@@ -6,7 +6,6 @@ designs = [i for i in input[1].split("\n")]
 
 byLen = {}
 for t in towels:
-    print(t)
     if len(t) in byLen:
         byLen[len(t)].append(t)
     else:
@@ -38,19 +37,29 @@ sigChars.remove(".")
 reduced.sort(key=len, reverse=True)
 towels = reduced
 
-print(towels)
+longestCombo = designs.copy()
+longestCombo.sort(key=len, reverse=True)
+longestCombo = len(longestCombo[0])
 
-out = []
-for d in designs:
-    
+change = True
+combos = set(towels.copy())
+finished = set()
+
+iters = 1
+while change:
+    print(iters)
+    change = False
+    new = set()
+
     for t in towels:
-        d = d.replace(t, ".")
-    out.append(d)
+        for c in combos:
+            if len(c+t) < longestCombo:
+                change = True
+                new.add(c+t)
+            finished.add(c)
+    
+    combos = new
+    iters +=1
 
-outt = 0
-for ind, o in enumerate(out):
-    if len(o) == o.count("."):
-        print(ind)
-        print(designs[ind])
-        outt+=1
-print(outt)
+    print(longestCombo)
+    print(len(combos))
