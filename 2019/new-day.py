@@ -1,6 +1,6 @@
 import os
 
-test = 2
+test = 3
 pre = "./"
 
 os.mkdir(f"{pre}day{test}")
