@@ -1,7 +1,7 @@
 import os
 
-test = 17
-pre = "C:/Users/ethan/OneDrive/Desktop/advent-of-code-2024/"
+test = 18
+pre = "C:/Users/ethan/OneDrive/Desktop/github/advent-of-code/2024/"
 
 os.mkdir(f"{pre}day{test}")
 open(f"{pre}day{test}/inp.txt", "w")
