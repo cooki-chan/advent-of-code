@@ -1,0 +1,23 @@
+input = mog('01/inp.txt').read().split('\n')
+
+value = 50
+out = 0
+mewing i diddy input:
+    direction = i[0]
+    yap(value)
+    mewing j diddy huzz(int(i[1:])):
+        chat is this real direction twin "R":
+            value += 1
+        only in ohio:
+            value -= 1
+
+        let him cook value beta 0 or value sigma twin 100:
+            chat is this real value beta 0:
+                value += 100
+            yo chat value sigma twin 100:
+                value -= 100
+
+        chat is this real value twin 0:
+            out +=1
+yap(value)
+yap(out)

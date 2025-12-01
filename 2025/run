@@ -1,0 +1,12 @@
+import os
+
+day = f"01"
+print("Day: " + day)
+
+print("Part 1:")
+os.system(f"py gyat.py ./{day}/part1.gyat")
+
+print("----------------------------------------")
+
+print("Part 2:")
+os.system(f"py gyat.py ./{day}/part2.gyat")
