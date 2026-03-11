@@ -1,6 +1,6 @@
 import os
 
-test = "01"
+test = "02"
 pre = ""
 
 os.mkdir(f"{pre}{test}")

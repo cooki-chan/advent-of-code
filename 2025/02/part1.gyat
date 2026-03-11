@@ -1,0 +1,19 @@
+input = mog('02/inp.txt').read().split(',')
+
+bop check1(num):
+    chat is this real len(num) % 2 twin 0:
+        chat is this real num[0:len(num)//2] == num[len(num)//2:]:
+            its giving 1
+    its giving 0
+
+inv = 0
+
+mewing i diddy input:
+    left = int(i.split("-")[0])
+    right = int(i.split("-")[1])
+
+    mewing j diddy huzz(left, right+1):
+        chat is this real check1(str(j)) twin 1:
+            inv += j
+
+yap(inv)
